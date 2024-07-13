@@ -1,4 +1,4 @@
-auth.onAuthStateChanged(usuarioMudou);
+auth.onAuthStateChanged(userChanged);
 
 function loginWithEmailAndPassword() {
     const email = document.getElementById('email').value;
@@ -20,15 +20,17 @@ function loginWithGoogle(){
     firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
+        // Autenticação bem-sucedida, você pode acessar os detalhes do usuário em result.user
         const user = result.user;
         console.log(user);
     })
     .catch((error) => {
         console.error(error);
     });
+
 }
 
-function usuarioMudou(user){
+function userChanged(user){
     if (user) {
         console.log("Usuário autenticado:", user);
         window.location.href = '../index.html';
@@ -37,6 +39,11 @@ function usuarioMudou(user){
     }
 }
 
+//menu mobile
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, { edge: 'right' });
+  });
 
 
 
